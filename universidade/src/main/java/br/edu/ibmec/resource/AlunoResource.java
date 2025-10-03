@@ -1,29 +1,11 @@
 package br.edu.ibmec.resource;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-
-import service.AlunoService;
-import dto.AlunoDTO;
-import entity.Aluno;
-import exception.DaoException;
-import exception.ServiceException;
-import exception.ServiceException.ServiceExceptionEnum;
-
-@Path("aluno")
+@RequestMapping("aluno")
 @Consumes("application/xml")
 @Produces("application/xml")
 public class AlunoResource {
@@ -34,12 +16,12 @@ public class AlunoResource {
 		this.alunoService = new AlunoService();
 	}
 
-	@GET
+    @GetMapping
 	// @Produces(MediaType.APPLICATION_JSON + ", " + MediaType.TEXT_PLAIN)
 	// @Produces({"application/json", "text/plain"})
 	// @Produces("application/json")
 	@Produces( { "application/xml", "application/json"})
-	@Path("{matricula}")
+	@RequestMapping("{matricula}")
 	public Response buscarAluno(@PathParam("matricula") String matricula) {
 		try {
 			AlunoDTO alunoDTO = alunoService.buscarAluno(new Integer(matricula)
@@ -51,7 +33,7 @@ public class AlunoResource {
 		}
 	}
 
-	@POST
+	@PostMapping
 	public Response cadastrarAluno(AlunoDTO alunoDTO) throws ServiceException,
 			DaoException {
 		try {
@@ -75,7 +57,7 @@ public class AlunoResource {
 		}
 	}
 
-	@PUT
+	@PutMapping
 	public Response alterarAluno(AlunoDTO alunoDTO) {
 		try {
 			alunoService.alterarAluno(alunoDTO);
@@ -110,7 +92,7 @@ public class AlunoResource {
 			return Response.status(404).build();
 		}
 	}
-	
+
 	@GET
 	@Produces("text/plain")
 	public String listarAlunos() {
