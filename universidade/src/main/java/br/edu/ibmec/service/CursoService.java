@@ -8,7 +8,9 @@ import br.edu.ibmec.entity.Curso;
 import br.edu.ibmec.exception.DaoException;
 import br.edu.ibmec.exception.ServiceException;
 import br.edu.ibmec.exception.ServiceException.ServiceExceptionEnum;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CursoService {
 	private EscolaDAO dao;
 

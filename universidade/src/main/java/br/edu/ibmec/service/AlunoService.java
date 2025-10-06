@@ -13,7 +13,9 @@ import br.edu.ibmec.entity.EstadoCivil;
 import br.edu.ibmec.exception.DaoException;
 import br.edu.ibmec.exception.ServiceException;
 import br.edu.ibmec.exception.ServiceException.ServiceExceptionEnum;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AlunoService {
 	private EscolaDAO dao;
 

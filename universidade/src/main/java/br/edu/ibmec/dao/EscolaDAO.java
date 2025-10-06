@@ -15,7 +15,9 @@ import br.edu.ibmec.entity.EstadoCivil;
 //import br.edu.ibmec.entity.Inscricao;
 //import br.edu.ibmec.entity.Turma;
 import br.edu.ibmec.exception.DaoException;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class EscolaDAO {
 
     private Map<Integer, Aluno> alunos;

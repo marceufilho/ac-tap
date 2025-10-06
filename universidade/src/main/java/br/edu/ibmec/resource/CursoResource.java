@@ -22,7 +22,7 @@ import br.edu.ibmec.exception.ServiceException;
 import br.edu.ibmec.exception.ServiceException.ServiceExceptionEnum;
 
 @RestController
-@RequestMapping("/aluno")
+@RequestMapping("/curso")
 public class CursoResource {
 
 	private CursoService cursoService;
