@@ -26,8 +26,9 @@ public class AlunoResource {
 
     private AlunoService alunoService;
 
-    public AlunoResource() {
-        this.alunoService = new AlunoService();
+    @Autowired
+    public AlunoResource(AlunoService alunoService) {
+        this.alunoService = alunoService;
     }
 
     @GetMapping(value = "/{matricula}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})

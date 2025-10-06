@@ -6,22 +6,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+import br.edu.ibmec.service.AlunoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import service.CursoService;
-import dto.CursoDTO;
-import entity.Curso;
-import exception.DaoException;
-import exception.ServiceException;
-import exception.ServiceException.ServiceExceptionEnum;
+import br.edu.ibmec.service.CursoService;
+import br.edu.ibmec.dto.CursoDTO;
+import br.edu.ibmec.entity.Curso;
+import br.edu.ibmec.exception.DaoException;
+import br.edu.ibmec.exception.ServiceException;
+import br.edu.ibmec.exception.ServiceException.ServiceExceptionEnum;
 
 @Path("curso")
 @Consumes("application/xml")
@@ -30,96 +28,98 @@ public class CursoResource {
 
 	private CursoService cursoService;
 
-	public CursoResource() {
-		this.cursoService = new CursoService();
-	}
+    @Autowired
+    public CursoResource(CursoService cursoService) {
+        this.cursoService = cursoService;
+    }
 
-	@GET
-	// @Produces(MediaType.APPLICATION_JSON + ", " + MediaType.TEXT_PLAIN)
-	// @Produces({"application/json", "text/plain"})
-	// @Produces("application/json")
-	@Produces( { "application/xml", "application/json"})
-	@Path("{codigo}")
-	public Response buscarCurso(@PathParam("codigo") String codigo) {
-		try {
-			CursoDTO cursoDTO = cursoService.buscarCurso(new Integer(codigo)
-					.intValue());
-			Response resposta = Response.ok(cursoDTO).build();
-			return resposta;
-		} catch (DaoException e) {
-			return Response.status(404).build();
-		}
-	}
+    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<CursoDTO> buscarCurso(@PathVariable("codigo") String codigo) {
+        try {
+            CursoDTO cursoDTO = cursoService.buscarCurso(Integer.parseInt(codigo));
+            return ResponseEntity.ok(cursoDTO);
+        } catch (DaoException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-	@POST
-	public Response cadastrarCurso(CursoDTO cursoDTO) throws ServiceException,
-			DaoException {
-		try {
-			cursoService.cadastrarCurso(cursoDTO);
-			return Response.created(new URI("" + cursoDTO.getCodigo())).build();
-		} catch (ServiceException e) {
-			if (e.getTipo() == ServiceExceptionEnum.CURSO_CODIGO_INVALIDO)
-				return Response.status(400).header("Motivo", e.getTipo())
-						.build();
-			if (e.getTipo() == ServiceExceptionEnum.CURSO_NOME_INVALIDO)
-				return Response.status(400).header("Motivo", "Nome inv�lido")
-						.build();
-			else
-				return Response.status(400).header("Motivo", e.getMessage())
-						.build();
-		} catch (DaoException e) {
-			return Response.status(400).header("Motivo",
-					"Erro no banco de dados").build();
-		} catch (URISyntaxException e) {
-			throw new RuntimeException();
-		}
-	}
+    @PostMapping
+    public ResponseEntity<Void> cadastrarCurso(@RequestBody CursoDTO cursoDTO)
+            throws ServiceException, DaoException {
+        try {
+            cursoService.cadastrarCurso(cursoDTO);
+            return ResponseEntity.created(new URI("" + cursoDTO.getCodigo())).build();
+        } catch (ServiceException e) {
+            if (e.getTipo() == ServiceExceptionEnum.CURSO_CODIGO_INVALIDO) {
+                return ResponseEntity.status(400)
+                        .header("Motivo", e.getTipo().toString())
+                        .build();
+            }
+            if (e.getTipo() == ServiceExceptionEnum.CURSO_NOME_INVALIDO) {
+                return ResponseEntity.status(400)
+                        .header("Motivo", "Nome inválido")
+                        .build();
+            } else {
+                return ResponseEntity.status(400)
+                        .header("Motivo", e.getMessage())
+                        .build();
+            }
+        } catch (DaoException e) {
+            return ResponseEntity.status(400)
+                    .header("Motivo", "Erro no banco de dados")
+                    .build();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException();
+        }
+    }
 
-	@PUT
-	public Response alterarCurso(CursoDTO cursoDTO) {
-		try {
-			cursoService.alterarCurso(cursoDTO);
-			return Response.created(new URI("" + cursoDTO.getCodigo())).build();
-		} catch (ServiceException e) {
-			if (e.getTipo() == ServiceExceptionEnum.CURSO_CODIGO_INVALIDO)
-				return Response.status(400).header("Motivo", "C�digo inv�lido")
-						.build();
-			if (e.getTipo() == ServiceExceptionEnum.CURSO_NOME_INVALIDO)
-				return Response.status(400).header("Motivo", "Nome inv�lido")
-						.build();
-			else
-				return Response.status(400).header("Motivo", e.getMessage())
-						.build();
-		} catch (DaoException e) {
-			return Response.status(400).header("Motivo",
-					"Erro no banco de dados").build();
-		} catch (URISyntaxException e) {
-			throw new RuntimeException();
-		}
-	}
+    @PutMapping
+    public ResponseEntity<Void> alterarCurso(@RequestBody CursoDTO cursoDTO) {
+        try {
+            cursoService.alterarCurso(cursoDTO);
+            return ResponseEntity.created(new URI("" + cursoDTO.getCodigo())).build();
+        } catch (ServiceException e) {
+            if (e.getTipo() == ServiceExceptionEnum.CURSO_CODIGO_INVALIDO) {
+                return ResponseEntity.status(400)
+                        .header("Motivo", "Código inválido")
+                        .build();
+            }
+            if (e.getTipo() == ServiceExceptionEnum.CURSO_NOME_INVALIDO) {
+                return ResponseEntity.status(400)
+                        .header("Motivo", "Nome inválido")
+                        .build();
+            } else {
+                return ResponseEntity.status(400)
+                        .header("Motivo", e.getMessage())
+                        .build();
+            }
+        } catch (DaoException e) {
+            return ResponseEntity.status(400)
+                    .header("Motivo", "Erro no banco de dados")
+                    .build();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException();
+        }
+    }
 
-	@DELETE
-	@Path("{codigo}")
-	public Response removerCurso(@PathParam("codigo") String codigo) {
-		try {
-			cursoService.removerCurso(new Integer(codigo)
-					.intValue());
-			Response resposta = Response.ok().build();
-			return resposta;
-		} catch (DaoException e) {
-			return Response.status(404).build();
-		}
-	}
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<Void> removerCurso(@PathVariable("codigo") String codigo) {
+        try {
+            cursoService.removerCurso(Integer.parseInt(codigo));
+            return ResponseEntity.ok().build();
+        } catch (DaoException e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
 
-	@GET
-	@Produces("text/plain")
-	public String listarCursos() {
-		List<String> nomes = new ArrayList<String>();
-		for (Iterator<Curso> it = cursoService.listarCursos().iterator(); it
-				.hasNext();) {
-			Curso curso = (Curso) it.next();
-			nomes.add(curso.getNome());
-		}
-		return nomes.toString();
-	}
+    @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
+    public String listarCursos() {
+        List<String> nomes = new ArrayList<String>();
+        for (Iterator<Curso> it = cursoService.listarCursos().iterator(); it
+                .hasNext();) {
+            Curso curso = (Curso) it.next();
+            nomes.add(curso.getNome());
+        }
+        return nomes.toString();
+    }
 }
