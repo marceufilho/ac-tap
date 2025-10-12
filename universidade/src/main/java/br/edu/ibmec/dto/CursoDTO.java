@@ -1,37 +1,20 @@
 package br.edu.ibmec.dto;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @XmlRootElement(name="curso")
 public class CursoDTO {
 	private int codigo;
 	private String nome;
 
-	// private List<AlunoDTO> alunos = new ArrayList<AlunoDTO>();
-	// private List<DisciplinaDTO> disciplinas = new ArrayList<DisciplinaDTO>();
-
-	public CursoDTO() {
-
-	}
-
-	public CursoDTO(int codigo, String nome) {
+    public CursoDTO(int codigo, String nome) {
 		this.codigo = codigo;
-		this.nome = nome;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -39,7 +22,5 @@ public class CursoDTO {
 	public String toString() {
 		return "CursoDTO [codigo=" + codigo + ", nome=" + nome + "]";
 	}
-	
-	
 
 }

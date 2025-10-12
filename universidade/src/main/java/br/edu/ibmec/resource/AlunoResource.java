@@ -7,11 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.ibmec.service.AlunoService;
 import br.edu.ibmec.dto.AlunoDTO;
@@ -104,7 +102,6 @@ public class AlunoResource {
         try {
             alunoService.removerAluno(Integer.parseInt(matricula));
             return ResponseEntity.ok().build();
-            // or: return ResponseEntity.noContent().build(); // 204 No Content (more common for DELETE)
         } catch (DaoException e) {
             return ResponseEntity.notFound().build();
         }

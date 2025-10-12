@@ -11,10 +11,15 @@ package br.edu.ibmec.dto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @XmlRootElement(name="aluno")
 public class AlunoDTO {
 	private int matricula;
@@ -26,14 +31,8 @@ public class AlunoDTO {
 	private List<String> telefones;
 
 	private int curso;
-	
-	//private List<InscricaoDTO> inscricoes = new ArrayList<InscricaoDTO>();
 
-	public AlunoDTO() {
-
-	}
-
-	public AlunoDTO(int matricula, 
+    public AlunoDTO(int matricula,
 			String nome, 
 			String dtNascimento,
 			boolean matriculaAtiva, 
@@ -63,71 +62,6 @@ public class AlunoDTO {
 			System.out.println("Erro Convers�o da idade: " + e.getMessage());
 			return 0;
 		}
-	}
-	
-	
-	public int getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
-	}
-
-	public boolean isMatriculaAtiva() {
-		return matriculaAtiva;
-	}
-
-	public void setMatriculaAtiva(boolean matriculaAtiva) {
-		this.matriculaAtiva = matriculaAtiva;
-	}
-
-	public EstadoCivilDTO getEstadoCivil() {
-		return estadoCivilDTO;
-	}
-
-	public void setEstadoCivil(EstadoCivilDTO estadoCivilDTO) {
-		this.estadoCivilDTO = estadoCivilDTO;
-	}
-
-	public int getCurso() {
-		return curso;
-	}
-
-	public void setCurso(int curso) {
-		this.curso = curso;
-	}
-
-	public String getDtNascimento() {
-		return dtNascimento;
-	}
-
-	public void setDtNascimento(String dtNascimento) {
-		this.dtNascimento = dtNascimento;
-	}
-
-	public List<String> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<String> telefones) {
-		this.telefones = telefones;
 	}
 
 }
