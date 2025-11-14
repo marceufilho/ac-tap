@@ -79,15 +79,7 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    /**
-     * Creates a new student using Template Method pattern.
-     * Delegates to CadastrarAlunoOperation which implements the
-     * student registration algorithm with create-specific variations.
-     *
-     * @param alunoDTO Student data transfer object
-     * @throws ServiceException if validation fails
-     * @throws DaoException if database operation fails
-     */
+
     @Transactional
     public void cadastrarAluno(AlunoDTO alunoDTO) throws ServiceException,
             DaoException {
@@ -95,15 +87,6 @@ public class AlunoService {
         cadastrarOperation.execute(alunoDTO);
     }
 
-    /**
-     * Updates an existing student using Template Method pattern.
-     * Delegates to AlterarAlunoOperation which implements the
-     * student registration algorithm with update-specific variations.
-     *
-     * @param alunoDTO Student data transfer object
-     * @throws ServiceException if validation fails
-     * @throws DaoException if database operation fails
-     */
     @Transactional
     public void alterarAluno(AlunoDTO alunoDTO) throws ServiceException,
             DaoException {
