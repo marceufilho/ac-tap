@@ -83,14 +83,14 @@ public class AlunoService {
     @Transactional
     public void cadastrarAluno(AlunoDTO alunoDTO) throws ServiceException,
             DaoException {
-        // Use Template Method pattern - delegates to concrete implementation
+        // Usa Template Method pattern
         cadastrarOperation.execute(alunoDTO);
     }
 
     @Transactional
     public void alterarAluno(AlunoDTO alunoDTO) throws ServiceException,
             DaoException {
-        // Use Template Method pattern - delegates to concrete implementation
+        // Usa Template Method pattern
         alterarOperation.execute(alunoDTO);
     }
 
