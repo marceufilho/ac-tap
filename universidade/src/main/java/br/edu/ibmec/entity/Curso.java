@@ -24,8 +24,19 @@ public class Curso {
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Aluno> alunos = new ArrayList<Aluno>();
 
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
     public Curso(int codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
+    }
+
+    public void addDisciplina(Disciplina disciplina) {
+        disciplinas.add(disciplina);
+    }
+
+    public void removeDisciplina(Disciplina disciplina) {
+        disciplinas.remove(disciplina);
     }
 }

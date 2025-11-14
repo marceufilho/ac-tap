@@ -1,0 +1,698 @@
+{
+	"info": {
+		"_postman_id": "universidade-api-collection",
+		"name": "Universidade API - Complete Collection",
+		"description": "Complete API testing collection for the Universidade Management System with Strategy Pattern for tuition calculation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Curso (Course)",
+			"item": [
+				{
+					"name": "Create Curso",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"nome\": \"Engenharia de Software\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/curso",
+							"host": ["{{baseUrl}}"],
+							"path": ["curso"]
+						}
+					}
+				},
+				{
+					"name": "Get Curso by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/curso/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["curso", "1"]
+						}
+					}
+				},
+				{
+					"name": "List All Cursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/curso",
+							"host": ["{{baseUrl}}"],
+							"path": ["curso"]
+						}
+					}
+				},
+				{
+					"name": "Update Curso",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"nome\": \"Engenharia de Software - Atualizado\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/curso",
+							"host": ["{{baseUrl}}"],
+							"path": ["curso"]
+						}
+					}
+				},
+				{
+					"name": "Delete Curso",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/curso/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["curso", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Professor",
+			"item": [
+				{
+					"name": "Create Professor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"nome\": \"Prof. Carlos Silva\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/professor",
+							"host": ["{{baseUrl}}"],
+							"path": ["professor"]
+						}
+					}
+				},
+				{
+					"name": "Get Professor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/professor/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["professor", "1"]
+						}
+					}
+				},
+				{
+					"name": "List All Professores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/professor",
+							"host": ["{{baseUrl}}"],
+							"path": ["professor"]
+						}
+					}
+				},
+				{
+					"name": "Update Professor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"nome\": \"Prof. Dr. Carlos Silva\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/professor",
+							"host": ["{{baseUrl}}"],
+							"path": ["professor"]
+						}
+					}
+				},
+				{
+					"name": "Delete Professor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/professor/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["professor", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Disciplina (Subject)",
+			"item": [
+				{
+					"name": "Create Disciplina",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"nome\": \"Algoritmos e Programação\",\n  \"curso\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/disciplina",
+							"host": ["{{baseUrl}}"],
+							"path": ["disciplina"]
+						}
+					}
+				},
+				{
+					"name": "Get Disciplina by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/disciplina/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["disciplina", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Disciplina",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"nome\": \"Algoritmos e Programação I\",\n  \"curso\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/disciplina",
+							"host": ["{{baseUrl}}"],
+							"path": ["disciplina"]
+						}
+					}
+				},
+				{
+					"name": "Delete Disciplina",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/disciplina/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["disciplina", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Aluno (Student)",
+			"item": [
+				{
+					"name": "Create Aluno - Padrao (100%)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"matricula\": 1,\n  \"nome\": \"João Silva\",\n  \"dtNascimento\": \"15/05/2000\",\n  \"matriculaAtiva\": true,\n  \"estadoCivilDTO\": \"solteiro\",\n  \"curso\": 1,\n  \"telefones\": [\"11999999999\"],\n  \"categoriaCobranca\": \"padrao\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aluno",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno"]
+						}
+					}
+				},
+				{
+					"name": "Create Aluno - Desconto (50%)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"matricula\": 2,\n  \"nome\": \"Maria Santos\",\n  \"dtNascimento\": \"20/08/1999\",\n  \"matriculaAtiva\": true,\n  \"estadoCivilDTO\": \"solteiro\",\n  \"curso\": 1,\n  \"telefones\": [\"11988888888\"],\n  \"categoriaCobranca\": \"desconto\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aluno",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno"]
+						}
+					}
+				},
+				{
+					"name": "Create Aluno - Bolsista (0%)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"matricula\": 3,\n  \"nome\": \"Pedro Oliveira\",\n  \"dtNascimento\": \"10/03/2001\",\n  \"matriculaAtiva\": true,\n  \"estadoCivilDTO\": \"solteiro\",\n  \"curso\": 1,\n  \"telefones\": [\"11977777777\"],\n  \"categoriaCobranca\": \"bolsista\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aluno",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno"]
+						}
+					}
+				},
+				{
+					"name": "Get Aluno by Matricula",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aluno/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno", "1"]
+						}
+					}
+				},
+				{
+					"name": "List All Alunos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aluno",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno"]
+						}
+					}
+				},
+				{
+					"name": "Update Aluno",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"matricula\": 1,\n  \"nome\": \"João Silva Junior\",\n  \"dtNascimento\": \"15/05/2000\",\n  \"matriculaAtiva\": true,\n  \"estadoCivilDTO\": \"casado\",\n  \"curso\": 1,\n  \"telefones\": [\"11999999999\", \"11988887777\"],\n  \"categoriaCobranca\": \"desconto\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/aluno",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno"]
+						}
+					}
+				},
+				{
+					"name": "Delete Aluno",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/aluno/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["aluno", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Turma (Class)",
+			"item": [
+				{
+					"name": "Create Turma",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"ano\": 2024,\n  \"semestre\": 1,\n  \"disciplina\": 1,\n  \"professor\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/turma",
+							"host": ["{{baseUrl}}"],
+							"path": ["turma"]
+						}
+					}
+				},
+				{
+					"name": "Create Turma 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 2,\n  \"ano\": 2024,\n  \"semestre\": 1,\n  \"disciplina\": 1,\n  \"professor\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/turma",
+							"host": ["{{baseUrl}}"],
+							"path": ["turma"]
+						}
+					}
+				},
+				{
+					"name": "Create Turma 3",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 3,\n  \"ano\": 2024,\n  \"semestre\": 2,\n  \"disciplina\": 1,\n  \"professor\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/turma",
+							"host": ["{{baseUrl}}"],
+							"path": ["turma"]
+						}
+					}
+				},
+				{
+					"name": "Get Turma",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/turma/1/2024/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["turma", "1", "2024", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Turma",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": 1,\n  \"ano\": 2024,\n  \"semestre\": 2,\n  \"disciplina\": 1,\n  \"professor\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/turma",
+							"host": ["{{baseUrl}}"],
+							"path": ["turma"]
+						}
+					}
+				},
+				{
+					"name": "Delete Turma",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/turma/1/2024/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["turma", "1", "2024", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Inscricao (Enrollment)",
+			"item": [
+				{
+					"name": "Create Inscricao - Aluno 1 Turma 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"avaliacao1\": 9.0,\n  \"avaliacao2\": 8.5,\n  \"numFaltas\": 1,\n  \"aluno\": 1,\n  \"codigo\": 1,\n  \"ano\": 2024,\n  \"semestre\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricao",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao"]
+						},
+						"description": "Creates enrollment with auto-calculated media (8.75) and situacao (aprovado)"
+					}
+				},
+				{
+					"name": "Create Inscricao - Aluno 1 Turma 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"avaliacao1\": 7.0,\n  \"avaliacao2\": 8.0,\n  \"numFaltas\": 0,\n  \"aluno\": 1,\n  \"codigo\": 2,\n  \"ano\": 2024,\n  \"semestre\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricao",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao"]
+						},
+						"description": "Creates enrollment with auto-calculated media (7.5) and situacao (aprovado)"
+					}
+				},
+				{
+					"name": "Create Inscricao - Aluno 1 Turma 3",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"avaliacao1\": 10.0,\n  \"avaliacao2\": 9.0,\n  \"numFaltas\": 0,\n  \"aluno\": 1,\n  \"codigo\": 3,\n  \"ano\": 2024,\n  \"semestre\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricao",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao"]
+						},
+						"description": "Creates enrollment with auto-calculated media (9.5) and situacao (aprovado)"
+					}
+				},
+				{
+					"name": "Create Inscricao - Low Grade (Reprovado)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"avaliacao1\": 5.0,\n  \"avaliacao2\": 4.0,\n  \"numFaltas\": 5,\n  \"aluno\": 2,\n  \"codigo\": 1,\n  \"ano\": 2024,\n  \"semestre\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricao",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao"]
+						},
+						"description": "Creates enrollment with auto-calculated media (4.5) and situacao (reprovado)"
+					}
+				},
+				{
+					"name": "Create Inscricao - Pending Grade",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"avaliacao1\": 0.0,\n  \"avaliacao2\": 8.0,\n  \"numFaltas\": 0,\n  \"aluno\": 3,\n  \"codigo\": 1,\n  \"ano\": 2024,\n  \"semestre\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricao",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao"]
+						},
+						"description": "Creates enrollment with auto-calculated situacao (pendente) because avaliacao1 is 0"
+					}
+				},
+				{
+					"name": "Get Inscricao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inscricao/1/1/2024/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao", "1", "1", "2024", "1"]
+						},
+						"description": "Returns enrollment with calculated media and situacao"
+					}
+				},
+				{
+					"name": "Update Inscricao - Change Grades",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"avaliacao1\": 10.0,\n  \"avaliacao2\": 10.0,\n  \"numFaltas\": 0,\n  \"aluno\": 1,\n  \"codigo\": 1,\n  \"ano\": 2024,\n  \"semestre\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricao",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao"]
+						},
+						"description": "Updates enrollment - media and situacao will be auto-recalculated"
+					}
+				},
+				{
+					"name": "Delete Inscricao",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/inscricao/1/1/2024/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["inscricao", "1", "1", "2024", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "7. Mensalidade (Tuition - Strategy Pattern)",
+			"item": [
+				{
+					"name": "Calculate Mensalidade - Padrao (100%)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alunos/1/mensalidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["alunos", "1", "mensalidade"]
+						},
+						"description": "Calculates tuition for student with 'padrao' category (100% payment). If student has 3 turmas: 3 × 300 = 900"
+					}
+				},
+				{
+					"name": "Calculate Mensalidade - Desconto (50%)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alunos/2/mensalidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["alunos", "2", "mensalidade"]
+						},
+						"description": "Calculates tuition for student with 'desconto' category (50% payment). If student has 1 turma: 1 × 300 × 0.5 = 150"
+					}
+				},
+				{
+					"name": "Calculate Mensalidade - Bolsista (0%)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/alunos/3/mensalidade",
+							"host": ["{{baseUrl}}"],
+							"path": ["alunos", "3", "mensalidade"]
+						},
+						"description": "Calculates tuition for student with 'bolsista' category (0% payment - free). Result will be 0.0"
+					}
+				}
+			]
+		}
+	]
+}

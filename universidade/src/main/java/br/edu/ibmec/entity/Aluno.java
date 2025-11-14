@@ -1,5 +1,6 @@
 package br.edu.ibmec.entity;
 
+import br.edu.ibmec.strategy.CalculoMensalidadeStrategy;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +43,15 @@ public class Aluno {
     @JoinColumn(name = "curso_codigo")
     private Curso curso;
 
+    @OneToMany(mappedBy = "id.aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Inscricao> inscricoes = new ArrayList<Inscricao>();
+
+    @Column(nullable = false)
+    private String categoriaCobranca = "padrao";
+
+    @Transient
+    private CalculoMensalidadeStrategy estrategia;
+
     public Aluno(int matricula, String nome, Data dataNascimento,
                  boolean matriculaAtiva, EstadoCivil estadoCivil, Curso curso,
                  List<String> telefones) {
@@ -54,5 +64,13 @@ public class Aluno {
 
         this.idade = 0;
         this.telefones = telefones;
+    }
+
+    public void addInscricao(Inscricao inscricao) {
+        inscricoes.add(inscricao);
+    }
+
+    public void removeInscricao(Inscricao inscricao) {
+        inscricoes.remove(inscricao);
     }
 }

@@ -29,6 +29,7 @@ public class AlunoDTO {
 	private boolean matriculaAtiva;
 	private EstadoCivilDTO estadoCivilDTO;
 	private List<String> telefones;
+	private String categoriaCobranca;
 
 	private int curso;
 

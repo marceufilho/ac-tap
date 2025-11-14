@@ -44,7 +44,7 @@ public class CursoService {
                     ServiceExceptionEnum.CURSO_CODIGO_INVALIDO);
         }
         if ((cursoDTO.getNome().length() < 1)
-                || (cursoDTO.getNome().length() > 20)) {
+                || (cursoDTO.getNome().length() > 50)) {
             throw new ServiceException(ServiceExceptionEnum.CURSO_NOME_INVALIDO);
         }
 
@@ -68,7 +68,7 @@ public class CursoService {
                     ServiceExceptionEnum.CURSO_CODIGO_INVALIDO);
         }
         if ((cursoDTO.getNome().length() < 1)
-                || (cursoDTO.getNome().length() > 20)) {
+                || (cursoDTO.getNome().length() > 50)) {
             throw new ServiceException(ServiceExceptionEnum.CURSO_NOME_INVALIDO);
         }
 

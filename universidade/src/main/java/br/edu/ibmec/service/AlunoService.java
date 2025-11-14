@@ -16,6 +16,8 @@ import br.edu.ibmec.entity.EstadoCivil;
 import br.edu.ibmec.exception.DaoException;
 import br.edu.ibmec.exception.ServiceException;
 import br.edu.ibmec.exception.ServiceException.ServiceExceptionEnum;
+import br.edu.ibmec.template.AlterarAlunoOperation;
+import br.edu.ibmec.template.CadastrarAlunoOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,12 @@ public class AlunoService {
 
     @Autowired
     private CursoRepository cursoRepository;
+
+    @Autowired
+    private CadastrarAlunoOperation cadastrarOperation;
+
+    @Autowired
+    private AlterarAlunoOperation alterarOperation;
 
     public static final Data getData(String dataString) {
         try {
@@ -71,72 +79,36 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
+    /**
+     * Creates a new student using Template Method pattern.
+     * Delegates to CadastrarAlunoOperation which implements the
+     * student registration algorithm with create-specific variations.
+     *
+     * @param alunoDTO Student data transfer object
+     * @throws ServiceException if validation fails
+     * @throws DaoException if database operation fails
+     */
     @Transactional
     public void cadastrarAluno(AlunoDTO alunoDTO) throws ServiceException,
             DaoException {
-        if ((alunoDTO.getMatricula() < 1) || (alunoDTO.getMatricula() > 99)) {
-            throw new ServiceException(
-                    ServiceExceptionEnum.CURSO_CODIGO_INVALIDO);
-        }
-        if ((alunoDTO.getNome().length() < 1)
-                || (alunoDTO.getNome().length() > 20)) {
-            throw new ServiceException(ServiceExceptionEnum.CURSO_NOME_INVALIDO);
-        }
-
-        try {
-            Curso curso = cursoRepository.findById(alunoDTO.getCurso())
-                    .orElseThrow(() -> new DaoException("Curso não encontrado"));
-
-            Aluno aluno = new Aluno(
-                    alunoDTO.getMatricula(),
-                    alunoDTO.getNome(),
-                    getData(alunoDTO.getDtNascimento().toString()),
-                    alunoDTO.isMatriculaAtiva(),
-                    EstadoCivil.solteiro,
-                    curso,
-                    alunoDTO.getTelefones());
-
-            alunoRepository.save(aluno);
-            curso.getAlunos().add(aluno);
-            cursoRepository.save(curso);
-        } catch (DaoException e) {
-            throw new DaoException("erro do dao no service throw");
-        }
+        // Use Template Method pattern - delegates to concrete implementation
+        cadastrarOperation.execute(alunoDTO);
     }
 
+    /**
+     * Updates an existing student using Template Method pattern.
+     * Delegates to AlterarAlunoOperation which implements the
+     * student registration algorithm with update-specific variations.
+     *
+     * @param alunoDTO Student data transfer object
+     * @throws ServiceException if validation fails
+     * @throws DaoException if database operation fails
+     */
     @Transactional
     public void alterarAluno(AlunoDTO alunoDTO) throws ServiceException,
             DaoException {
-        if ((alunoDTO.getMatricula() < 1) || (alunoDTO.getMatricula() > 99)) {
-            throw new ServiceException(
-                    ServiceExceptionEnum.CURSO_CODIGO_INVALIDO);
-        }
-        if ((alunoDTO.getNome().length() < 1)
-                || (alunoDTO.getNome().length() > 20)) {
-            throw new ServiceException(ServiceExceptionEnum.CURSO_NOME_INVALIDO);
-        }
-
-        try {
-            if (!alunoRepository.existsById(alunoDTO.getMatricula())) {
-                throw new DaoException("Aluno não encontrado");
-            }
-
-            Curso curso = cursoRepository.findById(alunoDTO.getCurso())
-                    .orElseThrow(() -> new DaoException("Curso não encontrado"));
-
-            Aluno aluno = new Aluno(
-                    alunoDTO.getMatricula(),
-                    alunoDTO.getNome(),
-                    getData(alunoDTO.getDtNascimento()),
-                    alunoDTO.isMatriculaAtiva(),
-                    EstadoCivil.solteiro,
-                    curso,
-                    alunoDTO.getTelefones());
-
-            alunoRepository.save(aluno);
-        } catch (DaoException e) {
-            throw new DaoException("erro do dao no service throw");
-        }
+        // Use Template Method pattern - delegates to concrete implementation
+        alterarOperation.execute(alunoDTO);
     }
 
     @Transactional
